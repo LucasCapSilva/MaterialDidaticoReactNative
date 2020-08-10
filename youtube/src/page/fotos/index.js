@@ -1,21 +1,15 @@
-import React, { Component } from "react"
-import { View, Image,TouchableOpacity, ScrollView } from 'react-native';
-import { TextInput,Text,Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React, {Component} from 'react'
+import { StyleSheet, Text, View,Button,Image,ScrollView } from 'react-native';
 
-import { FontAwesome } from '@expo/vector-icons';
 
 export default class Fotos extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Fotos'
-  });
-
-  componentDidMount() {
-
-  }
-
-  render() {
-    return (
-      <View flex={1} style={{ justifyContent: "flex-start" }}>
+      title: 'Video'
+    });
+    render() {
+  return (
+    <View flex={1} style={{ justifyContent: "flex-start" }}>
       <ScrollView>
       <View style={{paddingTop:70}}>
       <Text style={{fontSize:30, alignSelf:"flex-start"}} >Gato</Text>
@@ -43,9 +37,14 @@ export default class Fotos extends Component {
               </View>
               </ScrollView>
       </View>
-      
-      
-    );
-    
-  }
+  );
 }
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

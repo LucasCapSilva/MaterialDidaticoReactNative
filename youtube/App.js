@@ -1,87 +1,73 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+// In App.js in a new project
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+
 import Icon from 'react-native-vector-icons/Ionicons';
-import {createAppContainer} from 'react-navigation';
-import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import Home from './src/page/home';
 import Login from './src/page/Login';
 import Fotos from './src/page/fotos';
-import SobreNos from './src/page/sobrenos';
+import Video from './src/page/video';
 
 
-const TabNavigator = createMaterialBottomTabNavigator(
-  {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <View>
-            <Icon style={[{color: tintColor}]} size={25} name={'ios-home'} />
-          </View>
-        ),
-      }
-    },
-    Login: {
-      screen: Login,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <View>
-            <Icon style={[{color: tintColor}]} size={25} name={'ios-person'} />
-          </View>
-        ),
-        activeColor: '#ffffff',
-        inactiveColor: '#a3c2fa',
-        barStyle: { backgroundColor: '#2163f6' },
-      }
-    },
-    Imagens: {
-      screen: Fotos,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <View>
-            <Icon style={[{color: tintColor}]} size={25} name={'ios-images'} />
-          </View>
-        ),
-        activeColor: '#ffffff',
-        inactiveColor: '#92c5c2',
-        barStyle: { backgroundColor: '#2c6d6a' },
-      }
-    },
-    Sobre_nos: {
-      screen: SobreNos,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <View>
-            <Icon style={[{color: tintColor}]} size={25} name={'ios-people'} />
-          </View>
-        ),
-        activeColor: '#ffffff',
-        inactiveColor: '#ebaabd',
-        barStyle: { backgroundColor: '#d13560' },
-      }
-    },
-  },
-  {
-    initialRouteName: 'Home',
-    activeColor: '#ffffff',
-    inactiveColor: '#bda1f7',
-    barStyle: { backgroundColor: '#6948f4' },
-  }
-);
 
-export default createAppContainer(TabNavigator);
+
+const Stack = createMaterialBottomTabNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        activeColor="#ffffff"
+        inactiveColor="#bda1f7"
+      >
+        <Stack.Screen name="Home" component={Home}
+          options={() => ({
+            tabBarIcon: ({ tintColor = "white" }) => (
+              <View>
+                <View >
+                  <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+                </View>
+              </View>
+            ),
+          })} />
+
+        <Stack.Screen name="Login" component={Login}
+          options={() => ({
+            tabBarIcon: ({ tintColor = "white" }) => (
+              <View>
+                <View >
+                  <Icon style={[{ color: tintColor }]} size={25} name={'ios-person'} />
+                </View>
+              </View>
+            ),
+          })} />
+           <Stack.Screen name="Imagens" component={Fotos}
+          options={() => ({
+            tabBarIcon: ({ tintColor = "white" }) => (
+              <View>
+                <View >
+                  <Icon style={[{ color: tintColor }]} size={25} name={'ios-images'} />
+                </View>
+              </View>
+            ),
+          })} />
+           <Stack.Screen name="Video" component={Video}
+          options={() => ({
+            tabBarIcon: ({ tintColor = "white" }) => (
+              <View>
+                <View >
+                  <Icon style={[{ color: tintColor }]} size={25} name={'ios-videocam'} />
+                </View>
+              </View>
+            ),
+          })} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
